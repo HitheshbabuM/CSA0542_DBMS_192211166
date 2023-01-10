@@ -1,0 +1,107 @@
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| menteedetails     |
+| mentees           |
+| sales             |
+| student           |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.01 sec)
+
+mysql> create table dept(deptid int(10),deptname varchar(20),rollno int(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| deptid   | int(10)     | YES  |     | NULL    |       |
+| deptname | varchar(20) | YES  |     | NULL    |       |
+| rollno   | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into dept values(100,"cloud computing",1278001);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into dept values(101,"data science",1278002);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into dept values(102,"AI",1278003);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into dept values(103,"ML",1278004);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into dept values(104,"data analytics",1278005);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into dept values(104,"aws",1278006);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> update dept set deptid=105 where rollno=1278006;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from dept;
++--------+-----------------+---------+
+| deptid | deptname        | rollno  |
++--------+-----------------+---------+
+|    100 | cloud computing | 1278001 |
+|    101 | data science    | 1278002 |
+|    102 | AI              | 1278003 |
+|    103 | ML              | 1278004 |
+|    104 | data analytics  | 1278005 |
+|    105 | aws             | 1278006 |
++--------+-----------------+---------+
+6 rows in set (0.01 sec)
+
+mysql> update dept set deptname="PYTHON" where deptid=104;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select deptid,deptname from dept,mentees where mentees.regno=dept
+.rollno;
+Empty set (0.00 sec)
+
+mysql> select rollno,deptname,name from dept left outer join mentees on
+dept.rollno=mentees.regno;
++---------+-----------------+------+
+| rollno  | deptname        | name |
++---------+-----------------+------+
+| 1278001 | cloud computing | NULL |
+| 1278002 | data science    | NULL |
+| 1278003 | AI              | NULL |
+| 1278004 | ML              | NULL |
+| 1278005 | PYTHON          | NULL |
+| 1278006 | aws             | NULL |
++---------+-----------------+------+
+6 rows in set (0.01 sec)
+
+mysql> select rollno,deptname,name from dept right outer join mentees on
+ dept.rollno=mentees.regno;
++--------+----------+--------+
+| rollno | deptname | name   |
++--------+----------+--------+
+|   NULL | NULL     | kumar  |
+|   NULL | NULL     | rajesh |
+|   NULL | NULL     | ramesh |
+|   NULL | NULL     | rajiv  |
++--------+----------+--------+
+4 rows in set (0.01 sec)
