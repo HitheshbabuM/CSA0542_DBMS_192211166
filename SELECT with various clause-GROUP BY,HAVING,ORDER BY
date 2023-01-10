@@ -1,0 +1,54 @@
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| mentees           |
+| sales             |
+| student           |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees order by name;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select*from mentees group by marks;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+--------+---------+------------+-------+-------+---------+
+3 rows in set (0.01 sec)
+
+mysql> select*from mentees having marks>93;
++-------+-------+---------+------------+-------+-------+---------+
+| regno | name  | dept    | fathername | phno  | marks | subject |
++-------+-------+---------+------------+-------+-------+---------+
+|  2346 | kumar | cse     | suri       | 98790 |    98 | DBMS    |
+|  2370 | rajiv | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+-------+---------+------------+-------+-------+---------+
+2 rows in set (0.00 sec)
