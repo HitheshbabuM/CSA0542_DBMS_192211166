@@ -1,0 +1,92 @@
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| dept              |
+| menteedetails     |
+| mentees           |
+| sales             |
+| student           |
++-------------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create view marks_view as select subject,Marks from mentees;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select*from marks_view;
++---------+-------+
+| subject | Marks |
++---------+-------+
+| DBMS    |    98 |
+| FOC     |    92 |
+| PYTHON  |    92 |
+| PDSD    |    99 |
++---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> create index subject on mentees(subject);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from mentees;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| mentees |          1 | subject  |            1 | subject     | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.02 sec)
+
+mysql> create table per(pid int NOT NULL AUTO_INCREMENT,name varchar(50),age int(8),PRIMARY KEY(pid));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc per;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| age   | int(8)      | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.03 sec)
+
+mysql> alter table per AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into per(name,age) values('gowtham',40);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from per;
++-----+---------+------+
+| pid | name    | age  |
++-----+---------+------+
+| 100 | gowtham |   40 |
++-----+---------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into per(name,age) values('vijay',24);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from per;
++-----+---------+------+
+| pid | name    | age  |
++-----+---------+------+
+| 100 | gowtham |   40 |
+| 101 | vijay   |   24 |
++-----+---------+------+
+2 rows in set (0.00 sec)
