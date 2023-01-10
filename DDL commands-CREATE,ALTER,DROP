@@ -43,3 +43,23 @@ mysql> select*from sales;
 | brush       |    15 |         2 |      30 |
 +-------------+-------+-----------+---------+
 5 rows in set (0.02 sec)
+mysql> alter table sales add remainingstock varchar(10);
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc sales;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| productname    | varchar(20) | YES  |     | NULL    |       |
+| price          | int(10)     | YES  |     | NULL    |       |
+| noofitmes      | int(10)     | YES  |     | NULL    |       |
+| balance        | int(10)     | YES  |     | NULL    |       |
+| remainingstock | varchar(10) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+mysql> drop table student;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
