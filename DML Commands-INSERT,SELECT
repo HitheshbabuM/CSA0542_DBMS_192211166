@@ -1,0 +1,71 @@
+ use hithesh;
+Database changed
+mysql> create table mentees(regno int(10),name varchar(10),dept varchar(
+10),fathername varchar(10),phno int(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc mentees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int(10)     | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| dept       | varchar(10) | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
+| phno       | int(10)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into mentees values(2346,"kumar","cse","suri",98790);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(2367,"rajesh","cse","suresh",98791);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(2345,"ramesh","ece","surya",9834);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(2389,"raghu","ece","ramu",98485);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | ece  | surya      |  9834 |
+|  2389 | raghu  | ece  | ramu       | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select name from mentees;
++--------+
+| name   |
++--------+
+| kumar  |
+| rajesh |
+| ramesh |
+| raghu  |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select dept from mentees;
++------+
+| dept |
++------+
+| cse  |
+| cse  |
+| ece  |
+| ece  |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where dept="cse";
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
++-------+--------+------+------------+-------+
+2 rows in set (0.02 sec)
