@@ -1,0 +1,93 @@
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| mentees           |
+| sales             |
+| student           |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | ece  | surya      |  9834 |
++-------+--------+------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into mentees values(2370,"rajiv","biotech","ramesh",99372)
+;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+
+| regno | name   | dept    | fathername | phno  |
++-------+--------+---------+------------+-------+
+|  2346 | kumar  | cse     | suri       | 98790 |
+|  2367 | rajesh | cse     | suresh     | 98791 |
+|  2345 | ramesh | ece     | surya      |  9834 |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |
++-------+--------+---------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where regno=2345;
++-------+--------+------+------------+------+
+| regno | name   | dept | fathername | phno |
++-------+--------+------+------------+------+
+|  2345 | ramesh | ece  | surya      | 9834 |
++-------+--------+------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add marks int(3);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set marks=98 where name="kumar";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=92 where name="rajesh";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=92 where name="ramesh";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=99 where name="rajiv";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+
+| regno | name   | dept    | fathername | phno  | marks |
++-------+--------+---------+------------+-------+-------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 |
++-------+--------+---------+------------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where name like 'k%';
++-------+-------+------+------------+-------+-------+
+| regno | name  | dept | fathername | phno  | marks |
++-------+-------+------+------------+-------+-------+
+|  2346 | kumar | cse  | suri       | 98790 |    98 |
++-------+-------+------+------------+-------+-------+
+1 row in set (0.02 sec)
+
+mysql> select*from mentees where fathername like 'ra___h';
++-------+-------+---------+------------+-------+-------+
+| regno | name  | dept    | fathername | phno  | marks |
++-------+-------+---------+------------+-------+-------+
+|  2370 | rajiv | biotech | ramesh     | 99372 |    99 |
++-------+-------+---------+------------+-------+-------+
+1 row in set (0.00 sec)
