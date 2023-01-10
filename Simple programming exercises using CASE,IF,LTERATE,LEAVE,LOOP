@@ -1,0 +1,104 @@
+mysql> use hithesh;
+Database changed
+
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| dept              |
+| marks_view        |
+| menteedetails     |
+| mentees           |
+| per               |
+| sales             |
+| student           |
++-------------------+
+9 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+-----------+
+| regno | name   | dept    | fathername | phno  | marks | subject | Address   |
++-------+--------+---------+------------+-------+-------+---------+-----------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    | chennai   |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     | tirupathi |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  | nellore   |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    | madurai   |
++-------+--------+---------+------------+-------+-------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select name,marks,case when marks>95 then 'Excellent' when marks>
+90 then 'Good' else 'average' end as performance from mentees;
++--------+-------+-------------+
+| name   | marks | performance |
++--------+-------+-------------+
+| kumar  |    98 | Excellent   |
+| rajesh |    92 | Good        |
+| ramesh |    92 | Good        |
+| rajiv  |    99 | Excellent   |
++--------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select name,marks,if(marks>=95,'Excellent marks','Good marks')fro
+m mentees;
++--------+-------+----------------------------------------------+
+| name   | marks | if(marks>=95,'Excellent marks','Good marks') |
++--------+-------+----------------------------------------------+
+| kumar  |    98 | Excellent marks                              |
+| rajesh |    92 | Good marks                                   |
+| ramesh |    92 | Good marks                                   |
+| rajiv  |    99 | Excellent marks                              |
++--------+-------+----------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create function repeat_demo(inc int)
+    -> returns char(40)
+    -> deterministic
+    -> begin
+    -> declare income int;
+    -> set income=0;
+    -> repeat
+    -> set income=income+inc;
+    -> until income>4000
+    -> end repeat;
+    -> return "income>4000 detected";
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select repeat_demo(3000);$$
++----------------------+
+| repeat_demo(3000)    |
++----------------------+
+| income>4000 detected |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql> delimiter $$
+mysql> create function while_demo(value char(1))
+    -> returns char(20)
+    -> deterministic
+    -> begin
+    -> declare str char(100);
+    -> declare i int;
+    -> set str='';
+    -> set i=1;
+    -> label:
+    -> while i<=5 do
+    -> set str =concat(str,value);
+    -> set i=i+1;
+    -> end while label;
+    -> return str;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select while_demo('A');$$
++-----------------+
+| while_demo('A') |
++-----------------+
+| AAAAA           |
++-----------------+
+1 row in set (0.01 sec)
