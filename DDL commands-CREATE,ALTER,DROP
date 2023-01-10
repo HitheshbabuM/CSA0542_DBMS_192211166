@@ -58,7 +58,7 @@ mysql> desc sales;
 | remainingstock | varchar(10) | YES  |     | NULL    |       |
 +----------------+-------------+------+-----+---------+-------+
 5 rows in set (0.01 sec)
-mysql> drop table student;
+mysql> drop table sales;
 Query OK, 0 rows affected (0.09 sec)
 
 mysql> show tables;
