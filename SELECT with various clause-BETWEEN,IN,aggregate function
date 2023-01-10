@@ -1,0 +1,99 @@
+
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| mentees           |
+| sales             |
+| student           |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+
+| regno | name   | dept    | fathername | phno  | marks |
++-------+--------+---------+------------+-------+-------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 |
++-------+--------+---------+------------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table mentees add subject varchar(10);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="DBMS" where name="kumar";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="FOC" where name="rajesh";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="PYTHON" where name="ramesh";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="PDSD" where name="rajiv";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where marks between 90 and 95;
++-------+--------+------+------------+-------+-------+---------+
+| regno | name   | dept | fathername | phno  | marks | subject |
++-------+--------+------+------------+-------+-------+---------+
+|  2367 | rajesh | cse  | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece  | surya      |  9834 |    92 | PYTHON  |
++-------+--------+------+------------+-------+-------+---------+
+2 rows in set (0.02 sec)
+
+mysql> select*from mentees where marks not between 99 and 100;
++-------+--------+------+------------+-------+-------+---------+
+| regno | name   | dept | fathername | phno  | marks | subject |
++-------+--------+------+------------+-------+-------+---------+
+|  2346 | kumar  | cse  | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse  | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece  | surya      |  9834 |    92 | PYTHON  |
++-------+--------+------+------------+-------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where subject in("DBMS");
++-------+-------+------+------------+-------+-------+---------+
+| regno | name  | dept | fathername | phno  | marks | subject |
++-------+-------+------+------------+-------+-------+---------+
+|  2346 | kumar | cse  | suri       | 98790 |    98 | DBMS    |
++-------+-------+------+------------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as average from mentees;
++---------+
+| average |
++---------+
+| 95.2500 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select min(marks) as minimum from mentees;
++---------+
+| minimum |
++---------+
+|      92 |
++---------+
+1 row in set (0.02 sec)
