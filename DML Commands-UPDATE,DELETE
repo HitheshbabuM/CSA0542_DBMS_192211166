@@ -1,0 +1,41 @@
+use hithesh;
+Database changed
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | ece  | surya      |  9834 |
+|  2389 | raghu  | ece  | ramu       | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.00 sec)
+mysql> update mentees set dept="aids" where name="raghu";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | ece  | surya      |  9834 |
+|  2389 | raghu  | aids | ramu       | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> delete from mentees where dept="aids";
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from menttes;
+ERROR 1146 (42S02): Table 'hithesh.menttes' doesn't exist
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | ece  | surya      |  9834 |
++-------+--------+------+------------+-------+
+3 rows in set (0.00 sec)
