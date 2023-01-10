@@ -1,0 +1,59 @@
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| mentees           |
+| sales             |
+| student           |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select regno,name from mentees where name in(select name from mentees where dept="cse");
++-------+--------+
+| regno | name   |
++-------+--------+
+|  2346 | kumar  |
+|  2367 | rajesh |
++-------+--------+
+2 rows in set (0.02 sec)
+
+mysql> create table menteedetails(id int(10), name varchar(15));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into menteedetails(id,name)
+    -> select regno,name
+    -> from mentees where dept="ece";
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warning:0
+
+mysql> select*from menteedetails;
++------+--------+
+| id   | name   |
++------+--------+
+| 2345 | ramesh |
++------+--------+
+1 row in set (0.00 sec)
+
+mysql> select regno,(select name from menteedetails where id=2345) as na
+me,dept,fathername,marks,subject from mentees where regno=2345;
++-------+--------+------+------------+-------+---------+
+| regno | name   | dept | fathername | marks | subject |
++-------+--------+------+------------+-------+---------+
+|  2345 | ramesh | ece  | surya      |    92 | PYTHON  |
++-------+--------+------+------------+-------+---------+
+1 row in set (0.01 sec)
