@@ -1,0 +1,123 @@
+mysql> use hithesh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hithesh |
++-------------------+
+| bank              |
+| course            |
+| dept              |
+| edept             |
+| employee          |
+| marks             |
+| marks_view        |
+| menteedetails     |
+| mentees           |
+| movies            |
+| per               |
+| sales             |
+| student           |
++-------------------+
+13 rows in set (0.00 sec)
+
+mysql> create table bookcompany(bookno int(5),bookname varchar(30),authorname varchar(30),cost int(4),edition int(2));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into bookcompany values(200,"DBMS","suman",500,1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into bookcompany values(201,"PYTHON","suma",650,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into bookcompany values(202,"maths","sowmya",1650,4);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into bookcompany values(203,"java","keerthi",120,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from bookcompany;
++--------+----------+------------+------+---------+
+| bookno | bookname | authorname | cost | edition |
++--------+----------+------------+------+---------+
+|    200 | DBMS     | suman      |  500 |       1 |
+|    201 | PYTHON   | suma       |  650 |       3 |
+|    202 | maths    | sowmya     | 1650 |       4 |
+|    203 | java     | keerthi    |  120 |       2 |
++--------+----------+------------+------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table authors(author_id int(4),author_name varchar(30),res
+earch_area varchar(30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into authors values(220,"Newton","Physics");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into authors values(221,"Gauss","Maths");
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into authors values(222,"VantHoff","Thermodynamics");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into authors values(223,"De-broglie","Optics");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from authors;
++-----------+-------------+----------------+
+| author_id | author_name | research_area  |
++-----------+-------------+----------------+
+|       220 | Newton      | Physics        |
+|       221 | Gauss       | Maths          |
+|       222 | VantHoff    | Thermodynamics |
+|       223 | De-broglie  | Optics         |
++-----------+-------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select author_name from bookcompany where bookname='python';
+ERROR 1054 (42S22): Unknown column 'author_name' in 'field list'
+mysql> select authorname from bookcompany where bookname='python';
++------------+
+| authorname |
++------------+
+| suma       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select edition from bookcompany where bookname='maths';
++---------+
+| edition |
++---------+
+|       4 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> alter table bookcompany add publishedyear int(4);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update bookcompany set publishedyear=1995 where bookno=200;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update bookcompany set publishedyear=1985 where bookno=201;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update bookcompany set publishedyear=1989 where bookno=202;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update bookcompany set publishedyear=1889 where bookno=203;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from bookcompany;
++--------+----------+------------+------+---------+---------------+
+| bookno | bookname | authorname | cost | edition | publishedyear |
++--------+----------+------------+------+---------+---------------+
+|    200 | DBMS     | suman      |  500 |       1 |          1995 |
+|    201 | PYTHON   | suma       |  650 |       3 |          1985 |
+|    202 | maths    | sowmya     | 1650 |       4 |          1989 |
+|    203 | java     | keerthi    |  120 |       2 |          1889 |
++--------+----------+------------+------+---------+---------------+
+4 rows in set (0.00 sec)
