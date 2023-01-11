@@ -1,0 +1,101 @@
+mysql> use hithesh;
+Database changed
+mysql> create table movies(Sno int(10),Moviename varchar(20),Category varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into movies values(1,"DJ TILLU","COMEDY");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into movies values(2,"BHEEMLA NAYAK","ACTION");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into movies values(3,"KANCHANA","HORROR");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into movies values(4,"LOVE TODAY","ROMANCE");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT*FROM MOVIES;
++------+---------------+----------+
+| Sno  | Moviename     | Category |
++------+---------------+----------+
+|    1 | DJ TILLU      | COMEDY   |
+|    2 | BHEEMLA NAYAK | ACTION   |
+|    3 | KANCHANA      | HORROR   |
+|    4 | LOVE TODAY    | ROMANCE  |
++------+---------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> savepoint ini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into movies values(5,"DON","COMMERCIAL");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM MOVIES;
++------+---------------+------------+
+| Sno  | Moviename     | Category   |
++------+---------------+------------+
+|    1 | DJ TILLU      | COMEDY     |
+|    2 | BHEEMLA NAYAK | ACTION     |
+|    3 | KANCHANA      | HORROR     |
+|    4 | LOVE TODAY    | ROMANCE    |
+|    5 | DON           | COMMERCIAL |
++------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE MOVIES SET MOVIENAME="MR PERFECT" WHERE Sno=5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> savepoint upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from movies where Sno=5;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM MOVIES;
++------+---------------+----------+
+| Sno  | Moviename     | Category |
++------+---------------+----------+
+|    1 | DJ TILLU      | COMEDY   |
+|    2 | BHEEMLA NAYAK | ACTION   |
+|    3 | KANCHANA      | HORROR   |
+|    4 | LOVE TODAY    | ROMANCE  |
++------+---------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> savepoint del;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback to upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM MOVIES;
++------+---------------+------------+
+| Sno  | Moviename     | Category   |
++------+---------------+------------+
+|    1 | DJ TILLU      | COMEDY     |
+|    2 | BHEEMLA NAYAK | ACTION     |
+|    3 | KANCHANA      | HORROR     |
+|    4 | LOVE TODAY    | ROMANCE    |
+|    5 | MR PERFECT    | COMMERCIAL |
++------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> rollback to ini;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT*FROM MOVIES;
++------+---------------+----------+
+| Sno  | Moviename     | Category |
++------+---------------+----------+
+|    1 | DJ TILLU      | COMEDY   |
+|    2 | BHEEMLA NAYAK | ACTION   |
+|    3 | KANCHANA      | HORROR   |
+|    4 | LOVE TODAY    | ROMANCE  |
++------+---------------+----------+
+4 rows in set (0.00 sec)
