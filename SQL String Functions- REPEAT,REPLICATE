@@ -1,0 +1,34 @@
+mysql> use hithesh;
+Database changed
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+-----------+
+| regno | name   | dept    | fathername | phno  | marks | subject | Address   |
++-------+--------+---------+------------+-------+-------+---------+-----------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 | DBMS    | chennai   |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 | FOC     | tirupathi |
+|  2345 | ramesh | ece     | surya      |  9834 |    92 | PYTHON  | nellore   |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | PDSD    | madurai   |
++-------+--------+---------+------------+-------+-------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select repeat(name,2) from mentees;
++----------------+
+| repeat(name,2) |
++----------------+
+| kumarkumar     |
+| rajeshrajesh   |
+| rameshramesh   |
+| rajivrajiv     |
++----------------+
+4 rows in set (0.01 sec)
+
+mysql> select repeat(dept,2) from mentees;
++----------------+
+| repeat(dept,2) |
++----------------+
+| csecse         |
+| csecse         |
+| eceece         |
+| biotechbiotech |
++----------------+
+4 rows in set (0.00 sec)
